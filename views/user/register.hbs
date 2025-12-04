@@ -1,0 +1,25 @@
+{{#if errors}}
+<div class="alert alert-danger">
+    <ul>
+        {{#each errors}}
+            <li>{{msg}}</li>
+        {{/each}}
+    </ul>
+</div>
+{{/if}}
+<h1>Registro Usuario</h1>
+<form id="register_form" action="/user/register" method="post">
+  <div class="mb-3"> <label for="name" class="form-label">Nombre:</label>
+    <input type="text" class="form-control" id="name" name="name">
+  </div>
+  <div class="mb-3"> <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" name="email" >
+  </div>
+   <div class="mb-3"> <label for="password" class="form-label">Contraseña:</label>
+    <input type="password" class="form-control" id="password" name="password" >
+  </div>
+    <div class="mb-3"> <label for="confirm_password" class="form-label">Confirmar contraseña:</label>
+    <input type="password" class="form-control" id="confirm_password" name="confirm_password" >
+  </div>
+  <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
