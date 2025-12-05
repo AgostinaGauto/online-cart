@@ -14,6 +14,7 @@ const { ensure_database, sequelize_connection } = require('./database/mysql-conn
 ///////////////////// ROUTERS ////////////////////////////
 const homeRoutes = require('./routes/homeRoutes');
 const user_router = require('./routes/userRoutes');
+const category_router = require('./routes/categoryRoutes');
 
 /////////////////////////////////////////////////////////
 
@@ -72,6 +73,7 @@ app.use((req, res, next) => {
 //////////////////// RUTAS /////////////////////////
 app.use('/', homeRoutes); // ruta de home
 app.use('/user', user_router); // /user/register, /user/login, etc.
+app.use('/category', category_router); // /category/create, /category/list
 
 
 app.get('/', (req, res) => {

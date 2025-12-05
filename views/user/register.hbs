@@ -1,25 +1,37 @@
-{{#if errors}}
-<div class="alert alert-danger">
-    <ul>
-        {{#each errors}}
-            <li>{{msg}}</li>
-        {{/each}}
-    </ul>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4">Registro de Usuario</h2>
+        
+        <form action="/user/register" method="POST">
+            
+            <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                {{! Clase form-control para estilizar el input }}
+                <input type="text" name="name" id="name" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirmar Contraseña</label>
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
+            </div>
+            
+            {{! Clase btn para estilizar el botón }}
+            <button type="submit" class="btn btn-success w-100">Registrarse</button>
+        </form>
+
+        <p class="text-center mt-3">
+            ¿Ya tienes cuenta? <a href="/user/login">Inicia sesión</a>
+        </p>
+
+    </div>
 </div>
-{{/if}}
-<h1>Registro Usuario</h1>
-<form id="register_form" action="/user/register" method="post">
-  <div class="mb-3"> <label for="name" class="form-label">Nombre:</label>
-    <input type="text" class="form-control" id="name" name="name">
-  </div>
-  <div class="mb-3"> <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control" id="email" name="email" >
-  </div>
-   <div class="mb-3"> <label for="password" class="form-label">Contraseña:</label>
-    <input type="password" class="form-control" id="password" name="password" >
-  </div>
-    <div class="mb-3"> <label for="confirm_password" class="form-label">Confirmar contraseña:</label>
-    <input type="password" class="form-control" id="confirm_password" name="confirm_password" >
-  </div>
-  <button type="submit" class="btn btn-primary">Registrar</button>
-</form>

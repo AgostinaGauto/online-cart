@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{titulo}}  OnlineCart</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"> 
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    
+    {{! CONTENIDO DE AUTENTICACIÓN }}
+    <div class="container">
+        
+        {{! 🚨 CAMBIO CLAVE: Incluir el partial de mensajes flash aquí 🚨 }}
+        {{! Asume que tienes un partial llamado 'messages.hbs' en views/partials }}
+        {{> messages}}
+
+        {{! Aquí se inyectará el contenido de login.hbs y registro.hbs }}
+        {{{body}}}
+    </div>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
