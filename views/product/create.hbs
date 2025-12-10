@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="mb-4">{{titulo}}</h2>
+        
+        {{! Parcial para mostrar mensajes flash de error o éxito }}
+        {{> messages}}
+
+        <div class="card shadow-lg p-4">
+            {{! Importante: enctype para Multer. La ruta POST es /productos/crear }}
+            <form action="/product/create" method="POST" enctype="multipart/form-data">
+
+                {{! Campo: Nombre del Producto }}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nombre del Producto</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{name}}" required>
+                </div>
+
+                {{! Campo: Categoría (Relación 1:N) }}
+                <div class="mb-3">
+                    <label for="category" class="form-label">Categoría</label>
+                    <select class="form-select" id="category" name="category" required>
+                        <option value="">Seleccione una Categoría</option>
+                        {{! Itera sobre la lista de categorías obtenida del controlador }}
+                        {{#each categories}}
+                            <option value="{{this.category_id}}" {{#if (eq ../category_id this.category_id)}}selected{{/if}}>
+                                {{this.name}}
+                            </option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="row">
+                    {{! Campo: Precio }}
+                    <div class="col-md-6 mb-3">
+                        <label for="price" class="form-label">Precio ($)</label>
+                        <input type="number" step="0.01" min="0.01" class="form-control" id="price" name="price" value="{{price}}" required>
+                    </div>
+
+                    {{! Campo: Stock }}
+                    <div class="col-md-6 mb-3">
+                        <label for="stock" class="form-label">Stock Actual</label>
+                        <input type="number" min="0" class="form-control" id="stock" name="stock" value="{{stock}}" required>
+                    </div>
+                </div>
+
+                {{! Campo: Stock Mínimo }}
+                <div class="mb-3">
+                    <label for="minimum_stock" class="form-label">Stock Mínimo</label>
+                    <input type="number" min="0" class="form-control" id="minimum_stock" name="minimum_stock" value="{{minimum_stock}}" required>
+                    <div class="form-text">Se generará una alerta si el stock cae por debajo de este valor.</div>
+                </div>
+
+                {{! Campo: Imagen (Input de tipo file para Multer) }}
+                <div class="mb-3">
+                    <label for="image" class="form-label">Imagen del Producto</label>
+                    {{! El atributo "name" debe coincidir con el campo usado en Multer (upload.single('imagen')) }}
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                    <div class="form-text">Solo se permiten imágenes (jpg, jpeg, png). Max 5MB.</div>
+                </div>
+                
+                <hr>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="/product/list" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-save"></i> Guardar Producto
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

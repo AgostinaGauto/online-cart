@@ -15,6 +15,12 @@ const { ensure_database, sequelize_connection } = require('./database/mysql-conn
 const homeRoutes = require('./routes/homeRoutes');
 const user_router = require('./routes/userRoutes');
 const category_router = require('./routes/categoryRoutes');
+const product_router = require('./routes/productRoutes');
+
+console.log("homeRoutes:", typeof homeRoutes);
+console.log("user_router:", typeof user_router);
+console.log("category_router:", typeof category_router);
+console.log("product_router:", typeof product_router);
 
 /////////////////////////////////////////////////////////
 
@@ -29,9 +35,11 @@ const hbs = create({
   partialsDir: path.join(__dirname, 'views/partials'),
 
   helpers: {
-    eq: function (a, b) {
-      return a === b;
-    }
+    eq: (a, b) => a === b,
+    lt: (a, b) => a < b,
+    gt: (a, b) => a > b,
+    lte: (a, b) => a <= b,
+    gte: (a, b) => a >= b
   }
 });
 
@@ -74,6 +82,7 @@ app.use((req, res, next) => {
 app.use('/', homeRoutes); // ruta de home
 app.use('/user', user_router); // /user/register, /user/login, etc.
 app.use('/category', category_router); // /category/create, /category/list
+app.use('/product', product_router); 
 
 
 app.get('/', (req, res) => {
