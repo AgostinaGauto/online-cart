@@ -52,7 +52,7 @@ module.exports.createProduct = async (request, response) => {
 
     await product.create({ name, price, stock, minimum_stock, category: category_int, image }); // creamos un producto en la tabla productos generando una consulta SQL
 
-    request.flash('succes_msg', 'El producto se creo con exito');
+    request.flash('success_msg', 'El producto se creo con exito');
     response.redirect('/product/list');
 };
 
