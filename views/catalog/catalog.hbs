@@ -1,0 +1,47 @@
+<h2 class="mb-4 text-center">{{titulo}}</h2>
+
+{{> messages}}
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+    {{#each products}}
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+
+            {{!-- Imagen --}}
+            <img src="/uploads/{{this.image}}" 
+                 class="card-img-top" 
+                 alt="{{this.name}}"
+                 style="height: 200px; object-fit: cover;">
+
+            <div class="card-body">
+                <h5 class="card-title">{{this.name}}</h5>
+
+                <p class="card-text">
+                    <strong>Precio:</strong> ${{this.price}} <br>
+                    <strong>Stock disponible:</strong> {{this.stock}} <br>
+                    <strong>Categoría:</strong> {{this.category_relation.name}}
+                </p>
+
+                {{!-- Formulario para agregar al carrito --}}
+                <form action="/catalog/add-to-cart/{{this.product_id}}" method="POST" class="d-flex">
+
+                    <input type="number" 
+                           name="quantity" 
+                           class="form-control me-2"
+                           min="1" 
+                           max="{{this.stock}}" 
+                           value="1" 
+                           required>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-cart-plus"></i> Agregar
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    {{/each}}
+
+</div>

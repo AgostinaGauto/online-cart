@@ -16,6 +16,7 @@ const homeRoutes = require('./routes/homeRoutes');
 const user_router = require('./routes/userRoutes');
 const category_router = require('./routes/categoryRoutes');
 const product_router = require('./routes/productRoutes');
+const catalog_router = require('./routes/catalogRoutes');
 
 console.log("homeRoutes:", typeof homeRoutes);
 console.log("user_router:", typeof user_router);
@@ -54,7 +55,7 @@ app.use(express.urlencoded({ extended: true })); // permite que express lea dato
 app.use(express.json()); //permite leer json
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'assets'))); // permite usar archivos estaticos (imagenes, css, pdfs, etc)
-
+app.use('/uploads', express.static('uploads'));
 ///////////////// SESION /////////////////
 
 
@@ -83,6 +84,7 @@ app.use('/', homeRoutes); // ruta de home
 app.use('/user', user_router); // /user/register, /user/login, etc.
 app.use('/category', category_router); // /category/create, /category/list
 app.use('/product', product_router); 
+app.use('/catalog', catalog_router);
 
 
 app.get('/', (req, res) => {
