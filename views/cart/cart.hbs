@@ -1,0 +1,19 @@
+<h2 class="mb-4">Mi carrito</h2>
+
+{{#if cart}}
+    <p><strong>Fecha:</strong> {{cart.date}}</p>
+    <p><strong>Estado:</strong> {{cart.state}}</p>
+
+    <!-- Acá después se van a listar los cart_item -->
+    <p class="text-muted">Los productos del carrito se mostrarán aquí</p>
+
+    <form action="/cart/confirm/{{cart.cart_id}}" method="POST">
+        <button type="submit" class="btn btn-success mt-3">
+            Confirmar compra
+        </button>
+    </form>
+{{else}}
+    <div class="alert alert-info">
+        No tenés un carrito activo.
+    </div>
+{{/if}}
