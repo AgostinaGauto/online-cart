@@ -1,4 +1,5 @@
 const Cart = require('../models/cart');
+const CartItem = require('../models/cart_items');
 
 // ------------------ Control de creacion o verificacion de carrito activo ------------------
 
@@ -6,7 +7,7 @@ const Cart = require('../models/cart');
 // si no existe lo crea automaticamente
 // el catalogo va a utilizar esta funcion
 
-module.exports.gerOrCreateActiveCart = async(userId) =>{ // este controlador se usa cuando el usuario añade un producto al carrito
+module.exports.gerOrCreateActiveCart = async (userId) => { // este controlador se usa cuando el usuario añade un producto al carrito
     try {
         // buscamos un carrito activo del usuario
         let cart = await Cart.findOne({
@@ -17,7 +18,7 @@ module.exports.gerOrCreateActiveCart = async(userId) =>{ // este controlador se 
         });
 
         // si no existe, lo creamos
-        if(!cart){
+        if (!cart) {
             cart = await Cart.create({
                 date: new Date(), // fecha actual
                 state: 'Activo', // estado del carrito nuevo
@@ -28,11 +29,11 @@ module.exports.gerOrCreateActiveCart = async(userId) =>{ // este controlador se 
         
         // devolvemos el carrito creado
         return cart
-        
+
     } catch (error) {
         console.error('Error al crear u obtener el carrito:', error);
         throw error;
-        
+
     }
 };
 
@@ -41,8 +42,7 @@ module.exports.gerOrCreateActiveCart = async(userId) =>{ // este controlador se 
 
 // muestra el carrito actual del usuario
 
-module.exports.viewActiveCart = async(req, res) =>{
-
+exports.viewActiveCart = async (req, res) => {
     try {
         const userId = req.user.user_id;
 
@@ -51,17 +51,39 @@ module.exports.viewActiveCart = async(req, res) =>{
                 user_id: userId,
                 state: 'Activo'
             }
-
         });
 
-        res.render('cart/cart',{
-            cart
+        if (!cart) {
+            return res.render('cart/cart', { cart: null });
+        }
+
+        const cartItems = await CartItem.findAll({
+            where: { cart_id: cart.cart_id },
+            include: [
+                {
+                    model: Product,
+                    as: 'product_relation'
+                }
+            ]
         });
-        
+
+        let total = 0;
+
+        cartItems.forEach(item => {
+            item.subtotal = item.amount * item.price;
+            total += item.subtotal;
+        });
+
+        res.render('cart/cart', {
+            cart,
+            cartItems,
+            total
+        });
+
     } catch (error) {
         console.error(error);
         res.status(500).send('Error al mostrar el carrito');
-    
+
     }
 };
 
@@ -69,7 +91,7 @@ module.exports.viewActiveCart = async(req, res) =>{
 
 // cambia el estado del carrito a 'confirmado'
 
-module.exports.confirmCart = async(req, res) =>{
+module.exports.confirmCart = async (req, res) => {
     try {
 
         const userId = req.user.user_id; // obtenemos el id del usuario de la sesion del usuario logueado
@@ -87,11 +109,11 @@ module.exports.confirmCart = async(req, res) =>{
         );
 
         res.redirect('/cart/history'); // redirigimos al historial de carritos
-        
+
     } catch (error) {
         console.error(error);
         res.status(500).send('Error al confirmar el carrito');
-        
+
     }
 };
 
@@ -101,7 +123,7 @@ module.exports.confirmCart = async(req, res) =>{
 // Lista los carritos confirmados
 // que seria el historial de compras
 
-module.exports.cartHistory = async(req, res) =>{
+module.exports.cartHistory = async (req, res) => {
     try {
         const userId = req.user.user_id; // obtenemos el id del usuario logueado
 
@@ -119,11 +141,11 @@ module.exports.cartHistory = async(req, res) =>{
             carts
 
         });
-        
+
     } catch (error) {
         console.error(error);
         res.status(500).send('Error al cargar historial');
-        
+
     }
 };
 

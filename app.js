@@ -18,6 +18,7 @@ const category_router = require('./routes/categoryRoutes');
 const product_router = require('./routes/productRoutes');
 const catalog_router = require('./routes/catalogRoutes');
 const cart_router = require('./routes/cartRoutes');
+const cart_items_router = require('./routes/cartItemRoutes');
 
 console.log("homeRoutes:", typeof homeRoutes);
 console.log("user_router:", typeof user_router);
@@ -87,6 +88,7 @@ app.use('/category', category_router); // /category/create, /category/list
 app.use('/product', product_router); 
 app.use('/catalog', catalog_router);
 app.use('/cart', cart_router);
+app.use('/cart', cart_items_router);
 
 
 app.get('/', (req, res) => {
