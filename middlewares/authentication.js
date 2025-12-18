@@ -12,4 +12,5 @@ module.exports.ensure_authenticated = (req, res, next) =>{
 // si no esta logueado, se muestra un mensaje y se redirige a la pagina del login
     req.flash('error_msg', 'Inicia sesión para acceder a esta página.'); 
     res.redirect('/user/login');
-}
+};
+

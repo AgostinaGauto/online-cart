@@ -88,7 +88,7 @@ app.use('/category', category_router); // /category/create, /category/list
 app.use('/product', product_router); 
 app.use('/catalog', catalog_router);
 app.use('/cart', cart_router);
-app.use('/cart', cart_items_router);
+app.use('/cart-item', cart_items_router);
 
 
 app.get('/', (req, res) => {
@@ -109,7 +109,7 @@ const port = process.env.PORT || 3005;
         await sequelize_connection.authenticate();
         console.log("Base creada y conexión establecida");
 
-        await sequelize_connection.sync();  // 👈 CREA LAS TABLAS SI NO EXISTEN
+        await sequelize_connection.sync();  //  CREA LAS TABLAS SI NO EXISTEN
         console.log("Tablas sincronizadas");
 
         app.listen(port, () => {

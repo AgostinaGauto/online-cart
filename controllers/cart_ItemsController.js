@@ -11,7 +11,7 @@ module.exports.addItemToCart = async (req, res) =>{
         const { product_id, amount } = req.body;
 
         // obtenemos o creamos carrito activo 
-        const cart = await CartController.gerOrCreateActiveCart(userId);
+        const cart = await CartController.getOrCreateActiveCart(userId);
 
         // buscar producto
         const product = await Product.findByPk(product_id);

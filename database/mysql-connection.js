@@ -10,7 +10,7 @@ const sequelize_connection = new Sequelize( 'onlineCart_db', 'root', '',
         host: process.env.DB_HOST,
         dialect: 'mysql',
         port: process.env.DB_PORT || 3306,
-        loggins: false,
+        logging: false,
         define: {timestamps : false},
         pool: {
             max: 5,

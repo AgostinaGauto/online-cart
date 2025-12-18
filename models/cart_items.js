@@ -4,7 +4,7 @@ const cart = require('./cart');
 const product = require('./product');
 
 
-const cart_items = db.sequelize.define('cart_items', {
+const cart_items = db.sequelize_connection.define('cart_items', {
 
     cart_item_id: {
         type: sequelize.INTEGER,

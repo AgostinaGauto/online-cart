@@ -23,15 +23,17 @@
                     <strong>Categoría:</strong> {{this.category_relation.name}}
                 </p>
 
-                {{!-- Formulario para agregar al carrito --}}
-                <form action="/catalog/add-to-cart/{{this.product_id}}" method="POST" class="d-flex">
+                {{!-- Agregar al carrito --}}
+                <form action="/cart-item/add" method="POST" class="d-flex">
 
-                    <input type="number" 
-                           name="quantity" 
+                    <input type="hidden" name="product_id" value="{{this.product_id}}">
+
+                    <input type="number"
+                           name="amount"
                            class="form-control me-2"
-                           min="1" 
-                           max="{{this.stock}}" 
-                           value="1" 
+                           min="1"
+                           max="{{this.stock}}"
+                           value="1"
                            required>
 
                     <button type="submit" class="btn btn-primary">

@@ -1,7 +1,7 @@
 const Product = require('../models/product');
 const Category = require('../models/category');
 const Cart = require('../models/cart');
-const CartItem = require('../models/cartItem');
+const CartItem = require('../models/cart_items');
 
 module.exports.renderCatalog = async (req, res) => {
     try {
@@ -23,4 +23,6 @@ module.exports.renderCatalog = async (req, res) => {
         res.redirect('/');
     }
 };
+
+
 
