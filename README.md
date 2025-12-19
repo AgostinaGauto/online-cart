@@ -1,4 +1,4 @@
-## Online Cart
+## OnlineCart
 OnlineCart es una aplicación web desarrollada con **NodeJs, Express y Mysql**.
 El sistema permite gestionar un carrito de compras en línea, con control de acceso de usuarios y operaciones CRUD sobre categorías, productos, carritos e ítems.
 
@@ -53,4 +53,5 @@ Desarrollar una aplicación web que permita:
 - **Gestión de Archivos**: Subida de imágenes de productos gestionada con Multer.
 - **Seguridad**: Encriptación de contraseñas con bcrypt.
 - **Autenticación y Sesiones**: Passport junto con express-session para el manejo de sesiones. La configuración actual utiliza memoria local, con posibilidad de integración futura con Redis para escalabilidad y alta disponibilidad.
+
 
