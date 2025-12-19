@@ -4,17 +4,27 @@ El sistema permite gestionar un carrito de compras en línea, con control de acc
 
 ## Tecnologías Utilizadas
 
- ** Node.js**: Entorno de ejecución
-** Express.js**: Framework web
-** Sequelize**: ORM
-** MySQL / mysql2**:  Base de datos relacional
-** Passport.js**: Autenticación
-** Bcrypt**: Encriptación de contraseñas
-** Express-session**: Manejo de sesiones
-** Handlebars (HBS)**: Motor de plantillas
-** Bootstrap**: Diseño responsive
-** Dotenv**: Variables de entorno
-** Nodemon**: Reinicio automático del servidor durante desarrollo.
+**Node.js** – Entorno de ejecución
+
+**Express.js** – Framework web
+
+**Sequelize** – ORM
+
+**MySQL / mysql2** – Base de datos relacional
+
+**Passport.js** – Autenticación
+
+**Bcrypt** – Encriptación de contraseñas
+
+**Express-session** – Manejo de sesiones
+
+**Handlebars (HBS)** – Motor de plantillas
+
+**Bootstrap** – Diseño responsive
+
+**Dotenv** – Variables de entorno
+
+**Nodemon** – Reinicio automático del servidor durante desarrollo.
 
 ## Objetivo del Proyecto
 Desarrollar una aplicación web que permita:
@@ -43,3 +53,4 @@ Desarrollar una aplicación web que permita:
 - **Gestión de Archivos**: Subida de imágenes de productos gestionada con Multer.
 - **Seguridad**: Encriptación de contraseñas con bcrypt.
 - **Autenticación y Sesiones**: Passport junto con express-session para el manejo de sesiones. La configuración actual utiliza memoria local, con posibilidad de integración futura con Redis para escalabilidad y alta disponibilidad.
+
